@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Ace with Javascript</h1>
+    <button id="start">Start</button>
+    <br>
+    <br>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    const sayDate = function (str) {
+        console.log(str, Date.now());
+    }
+
+    let intervalId; // Declare the intervalId variable outside
+
+    document.querySelector('#start').addEventListener('click', function () {
+        if (!intervalId) { // Ensure a new interval is not started if one already exists
+            intervalId = setInterval(sayDate, 1000, "Abir");
+        }
+    })
+
+    document.querySelector('#stop').addEventListener('click', function () {
+        clearInterval(intervalId); // Use clearInterval with the intervalId
+        intervalId = null; // Reset intervalId so you can start it again if needed
+        console.log("stop");
+    })
+
+
+
+
+
+</script>
+
+</html>
