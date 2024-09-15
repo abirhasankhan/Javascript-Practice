@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 40%;
+        }
+    
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+    
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+</head>
+<body style="background-color: #615858;">
+<h2>Card</h2>
+
+    <div class="card">
+        <img id="img" src="img_avatar.png" alt="Avatar" style="width:100%">
+        <div class="container">
+            <h4><b id="followers">followers</b></h4>
+        </div>
+        <button id="show">show</button>
+    </div>
+
+</body>
+
+<script>
+    let followers;
+    let avatar_url;
+    const reqUrl = 'https://api.github.com/users/abirkhan-zero';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', reqUrl);
+
+    xhr.onreadystatechange = function () {
+        console.log(this.readyState);
+
+        if(xhr.readyState === 4){
+            const data = JSON.parse(this.responseText);
+            console.log(typeof data);
+            //console.log(data.followers);
+            //console.log(data.avatar_url);
+
+            followers = data.followers;
+            avatar_url = data.avatar_url;
+
+        }
+    }
+    xhr.send();
+
+
+    document.querySelector('#show').addEventListener('click', function () {
+        document.querySelector('#followers').innerHTML = `Flower : ${followers}`;
+        document.getElementById("img").src = avatar_url;
+    })
+
+</script>
+</html>
